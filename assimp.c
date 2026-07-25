@@ -2,17 +2,6 @@
  *
  * \brief utilisation de GL4Dummies et Lib Assimp pour chargement de
  * scènes.
- *
- * Modification de l'exemple fourni par lib Assimp utilisant GL < 3 et
- * GLUT et upgrade avec utilisation des VAO/VBO et matrices et shaders
- * GL4dummies.
- *
- * \author Vincent Boyer et Farès Belhadj amsi@up8.edu
- * \date February 14 2017
- *
- * Modification : Faire en sorte de charger autant d'objets qu'on veut.
- * \author Farès Belhadj, amsi@up8.edu
- * \date April, 18 2022
  */
 
 #include <assert.h>
