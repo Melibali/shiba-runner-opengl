@@ -1,8 +1,4 @@
 /*!\file audioHelper.c
- *
- * \brief éléments audio pouvant être utiles pour la démo.
- * \author Farès BELHADJ, amsi@ai.univ-paris8.fr
- * \date May 5, 2014 - February 26, 2016
  */
 
 #include "audioHelper.h"
