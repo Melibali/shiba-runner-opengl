@@ -153,19 +153,3 @@ void animationsInit(void) {
   if(!_quadId)
     _quadId = gl4dgGenQuadf();
 }
-/*_load_texture   convertir une image SDL en texture utilisable par le GPU/OpenGL. 
-fondu() crée une transition entre deux scènes en mélangeant les textures des deux rendus grâce à un shader GLSL.
-
-fondui() utilise une troisième texture comme masque de transition afin de produire un effet plus artistique.
-
-rouge afficher un écran rouge plein écran
-
-animationsInit() créer un quad plein écran utilisé pour afficher les shaders de transition.
-
-animations.c gère les transitions et animations globales de la démo.
-Le fichier contient une fonction _load_texture permettant de charger des images SDL en textures OpenGL.
-La fonction fondu() réalise une transition entre deux scènes en mélangeant leurs textures avec un shader GLSL.
-fondui() fonctionne de manière similaire mais ajoute une troisième texture servant de masque de transition pour produire un effet visuel plus artistique.
-La fonction rouge() affiche un écran rouge plein écran servant de transition visuelle.
-Enfin, animationsInit() initialise un quad plein écran utilisé pour afficher les effets de transition et les shaders de post-traitement.
-*/
