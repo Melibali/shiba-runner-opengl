@@ -50,13 +50,9 @@ GLuint assimpGenScene(const char * filename) {
   GLuint ivao = 0, id_scene = 0;
   scene_t * cur_scene = NULL;
   struct aiLogStream stream;
-  /* get a handle to the predefined STDOUT log stream and attach
-     it to the logging system. It remains active for all further
-     calls to aiImportFile(Ex) and aiApplyPostProcessing. */
   stream = aiGetPredefinedLogStream(aiDefaultLogStream_STDOUT, NULL);
   aiAttachLogStream(&stream);
-  /* ... same procedure, but this stream now writes the
-     log messages to assimp_log.txt */
+
   stream = aiGetPredefinedLogStream(aiDefaultLogStream_FILE,"assimp_log.txt");
   aiAttachLogStream(&stream);
 
@@ -66,10 +62,7 @@ GLuint assimpGenScene(const char * filename) {
   assert(id_scene);
   cur_scene = _scenes_from_id(id_scene);
   assert(cur_scene);  
-  /* the model name can be specified on the command line. If none
-     is specified, we try to locate one of the more expressive test 
-     models from the repository (/models-nonbsd may be missing in 
-     some distributions so we need a fallback from /models!). */
+
   if(loadasset(cur_scene) != 0) {
     fprintf(stderr, "Erreur lors du chargement du fichier %s\n", filename);
     exit(3);
@@ -141,13 +134,9 @@ void assimpDrawScene(GLuint id_scene) {
 void assimpDeleteScene(GLuint id_scene) {
   scene_t * cur_scene = _scenes_from_id(id_scene);
   assert(cur_scene);  
-  /* cleanup - calling 'aiReleaseImport' is important, as the library 
-     keeps internal resources until the scene is freed again. Not 
-     doing so can cause severe resource leaking. */
+
   aiReleaseImport(cur_scene->scene);
-  /* We added a log stream to the library, it's our job to disable it
-     again. This will definitely release the last resources allocated
-     by Assimp.*/
+
   aiDetachAllLogStreams();
   if(cur_scene->counts) {
     free(cur_scene->counts);
@@ -352,8 +341,7 @@ static void sceneDrawVAOs(scene_t * cur_scene, const struct aiScene *sc, const s
   GLint id;
 
   glGetIntegerv(GL_CURRENT_PROGRAM, &id);
-  /* By VB Inutile de transposer la matrice, gl4dummies fonctionne avec des transpose de GL. */
-  /* aiTransposeMatrix4(&m); */
+
   gl4duPushMatrix();
   gl4duMultMatrixf((GLfloat*)&m);
   gl4duSendMatrices();
@@ -391,11 +379,6 @@ static int sceneNbMeshes(const struct aiScene *sc, const struct aiNode* nd, int 
 }
 
 static int loadasset (scene_t * cur_scene) {
-  /* we are taking one of the postprocessing presets to avoid
-     spelling out 20+ single postprocessing flags here. */
-  /* struct aiString str; */
-  /* aiGetExtensionList(&str); */
-  /* fprintf(stderr, "EXT %s\n", str.data); */
   cur_scene->scene = aiImportFile(cur_scene->filename, 
 		       aiProcessPreset_TargetRealtime_MaxQuality |
 		       aiProcess_CalcTangentSpace       |
