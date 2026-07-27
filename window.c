@@ -3,9 +3,9 @@
  * \author Melissa
  */
 #include <stdlib.h>
-#include <GL4D/gl4du.h>//matrice shaders 
+#include <GL4D/gl4du.h>
 #include <GL4D/gl4dh.h>
-#include <GL4D/gl4duw_SDL2.h>//clavier fenttre sdl
+#include <GL4D/gl4duw_SDL2.h>
 #include "animations.h"
 #include "audioHelper.h"
 static void init(void);
@@ -36,25 +36,23 @@ int main(int argc, char ** argv) {
        GL4DW_POS_UNDEFINED, GL4DW_POS_UNDEFINED,
        _dim[0], _dim[1], GL4DW_SHOWN))
     return 1;
-  init();// initialise OpenGL, les animations et la timeline
-  atexit(quit);//appelle automatiquement quit() quand le programme se ferme.
-  gl4duwResizeFunc(resize);//// associe la fonction resize au redimensionnement de fenêtre
+  init();
+  atexit(quit);
+  gl4duwResizeFunc(resize);
   gl4duwKeyDownFunc(keydown);
   gl4duwKeyUpFunc(keyup);
-  gl4duwDisplayFunc(gl4dhDraw);//définit la fonction appelée à chaque frame pour dessiner la démo.
+  gl4duwDisplayFunc(gl4dhDraw);
   ahInitAudio("takeonme.mod");
-  gl4duwMainLoop();// lance la boucle principale du programme
+  gl4duwMainLoop();
   return 0;
 }
 
-// initialise OpenGL, la timeline et les paramètres de rendu
 static void init(void) {
   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
   gl4dhInit(_animations, _dim[0], _dim[1], animationsInit);
   resize(_dim[0], _dim[1]);
 }
 
-// adapte le viewport OpenGL quand la fenêtre change de taille
 static void resize(int w, int h) {
   _dim[0] = w; _dim[1] = h;
   glViewport(0, 0, w, h);
@@ -62,7 +60,7 @@ static void resize(int w, int h) {
 
 static void keydown(int keycode) {
   switch(keycode) {
-  case SDLK_ESCAPE://ferme le prg
+  case SDLK_ESCAPE:
     exit(0);
     break;
   default:
@@ -74,7 +72,6 @@ static void keyup(int keycode) {
   shibaKeyUp(keycode);
 }
 
-// nettoie les ressources OpenGL et audio avant fermeture
 static void quit(void) {
   ahClean();
   gl4duClean(GL4DU_ALL);
