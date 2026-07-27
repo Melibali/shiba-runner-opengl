@@ -74,7 +74,6 @@ Modèle 3D
 Musique
 
 Fichier audio MOD utilisé dans la démo.
-Source : modarchive.org
 
 Textures
 
