@@ -162,6 +162,3 @@ static void quit(void) {
   _spiral_t = 0.0f;
     _time     = 0.0f;
 }
-
-//gère les sommets (positions, transformations, projection)
-//gère les pixels, couleurs, textures, lumière
